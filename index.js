@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 
 app.get('/data', (req, res) => {
     // Read the xlsx file
-    const workbook = xlsx.readFile('/src/db.xlsx'); // Replace with the actual path to your xlsx file
+    const workbook = xlsx.readFile('https://findpractitioners-backend-p9q5.vercel.app/src/db.xlsx'); // Replace with the actual path to your xlsx file
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
     const data = xlsx.utils.sheet_to_json(sheet);
