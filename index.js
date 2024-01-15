@@ -50,7 +50,7 @@ app.post('/saveData', (req, res) => {
     res.json({ message: 'New row added to Excel file' });
 });
   
-
+app.use('/src', express.static(__dirname + '/src'));
 app.listen(3000, () => {
     console.log('Server running at http://localhost:3000/');
 });
