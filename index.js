@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 
 app.get('/data', (req, res) => {
     // Read the xlsx file
-    const workbook = xlsx.readFile('/db.xlsx'); // Replace with the actual path to your xlsx file
+    const workbook = xlsx.readFile('/src/db.xlsx'); // Replace with the actual path to your xlsx file
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
     const data = xlsx.utils.sheet_to_json(sheet);
@@ -30,8 +30,8 @@ app.post('/saveData', (req, res) => {
   
     // Read existing data from the Excel file
     let existingData = [];
-    if (fs.existsSync('db.xlsx')) {
-        const workbook = xlsx.readFile('db.xlsx');
+    if (fs.existsSync('/src/db.xlsx')) {
+        const workbook = xlsx.readFile('/src/db.xlsx');
         const sheetName = workbook.SheetNames[0];
         existingData = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName]);
     }
@@ -45,7 +45,7 @@ app.post('/saveData', (req, res) => {
     xlsx.utils.book_append_sheet(updatedWorkbook, updatedWorksheet, 'Sheet1');
 
     // Write the updated workbook to the Excel file
-    xlsx.writeFile(updatedWorkbook, 'db.xlsx');
+    xlsx.writeFile(updatedWorkbook, '/src/db.xlsx');
 
     res.json({ message: 'New row added to Excel file' });
 });
